@@ -52,3 +52,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'strong_migrations', '~> 0.7.1'
+gem "bullet", "~> 6.1", :group => :development
