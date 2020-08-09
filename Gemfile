@@ -57,3 +57,5 @@ gem 'strong_migrations', '~> 0.7.1'
 gem "bullet", "~> 6.1", :group => :development
 
 gem "devise", "~> 4.7"
+
+gem "sendgrid-ruby", "~> 6.3"
