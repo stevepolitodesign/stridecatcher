@@ -59,3 +59,5 @@ gem "bullet", "~> 6.1", :group => :development
 gem "devise", "~> 4.7"
 
 gem "sendgrid-ruby", "~> 6.3"
+
+gem "honeybadger", "~> 4.7"
