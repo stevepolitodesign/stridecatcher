@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Stridecatcher</title>
+    <% if content_for?(:title) %>
+      <title><%= yield :title %> | Stridecatcher</title>
+    <% else %>
+      <title>Stridecatcher</title>
+    <% end %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,9 +20,6 @@
     <main class="container">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
-      <%= link_to "Create an Account", new_user_registration_path unless current_user %>
-      <%= link_to "Sign In", new_user_session_path unless current_user %>
-      <%= link_to "Sign Out", destroy_user_session_path, method: :delete if current_user %>
       <%= yield %>
     </main>
   </body>
