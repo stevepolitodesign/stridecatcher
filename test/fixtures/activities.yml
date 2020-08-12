@@ -1,15 +1,5 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  duration: 1
-  category: 1
-  distance: 9.99
-  difficulty: 1
-  unit: 1
-
-two:
-  duration: 1
-  category: 1
-  distance: 9.99
-  difficulty: 1
-  unit: 1
+confirmed_user_activity_one:
+  date: <%= Time.zone.now %>
+  user: confirmed_user_with_activities
