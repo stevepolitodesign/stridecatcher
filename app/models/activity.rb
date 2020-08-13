@@ -29,6 +29,18 @@ class Activity < ApplicationRecord
                 case self.unit
                 when "miles"
                     self.calculated_pace = self.duration / self.distance
+                when "kilometers"
+                    # 0.6213712
+                    converted_distance = self.distance * 0.6213712
+                    self.calculated_pace = self.duration / converted_distance
+                when "meters"
+                    # 0.0006213711985
+                    converted_distance = self.distance * 0.0006213711985
+                    self.calculated_pace = self.duration / converted_distance
+                when "yards"
+                    # 0.0005681818239083977
+                    converted_distance = self.distance * 0.0005681818239083977
+                    self.calculated_pace = self.duration / converted_distance
                 end
             end
         end
