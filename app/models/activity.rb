@@ -1,4 +1,5 @@
 class Activity < ApplicationRecord
+    self.ignored_columns = ["pace"]
     belongs_to :user
 
     enum category: [:run, :long_run, :workout, :race, :other]
