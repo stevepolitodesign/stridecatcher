@@ -3,7 +3,7 @@ require 'test_helper'
 class ActivityTest < ActiveSupport::TestCase
   def setup
     @user = users(:confirmed_user)
-    @activity = @user.activities.build(date: Time.zone.now)
+    @activity = @user.activities.build(date: Time.zone.now, duration: 1)
   end
 
   test "should be valid" do
@@ -26,5 +26,19 @@ class ActivityTest < ActiveSupport::TestCase
   test "distance should be positive" do
     @activity.distance = -1
     assert_not @activity.valid?    
-  end  
+  end
+  
+  test "should have distance or duration" do
+    @activity.distance = nil
+    @activity.duration = nil
+
+    assert_not @activity.valid?
+  end
+
+  test "should have unit if distance is set" do
+    @activity.distance = 1
+    @activity.unit = nil
+
+    assert_not @activity.valid?
+  end
 end
