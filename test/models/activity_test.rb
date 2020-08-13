@@ -41,4 +41,14 @@ class ActivityTest < ActiveSupport::TestCase
 
     assert_not @activity.valid?
   end
+
+  test "should calculate calculated_pace" do
+    @activity.distance = 10
+    @activity.unit = :miles
+    @activity.duration = 3600
+    @activity.save
+
+    assert_equal 360, @activity.reload.calculated_pace
+  end
+
 end
