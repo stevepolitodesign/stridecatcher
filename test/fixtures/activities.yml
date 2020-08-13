@@ -3,3 +3,4 @@
 confirmed_user_activity_one:
   date: <%= Time.zone.now %>
   user: confirmed_user_with_activities
+  duration: 1
