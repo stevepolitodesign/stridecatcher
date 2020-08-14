@@ -1,4 +1,5 @@
 <%= form_with model: @activity, local: true do |f| %>
+    <%= render partial: "shared/form_errors", locals: { f: f } %>
     <div class="form-group">
         <%= f.label :date %>
         <%= f.datetime_field :date, class: "form-control" %>

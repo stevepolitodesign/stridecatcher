@@ -1,0 +1,8 @@
+<% if f.object.errors.any? %>
+    <h3><%= pluralize(f.object.errors.count, "error") %> prevented this <%= f.object.class.name.downcase %> from being saved:</h3>
+    <ul>
+        <% f.object.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+    </ul>
+<% end %>
