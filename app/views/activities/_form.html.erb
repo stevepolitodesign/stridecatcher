@@ -1,0 +1,13 @@
+<%= form_with model: @activity, local: true do |f| %>
+    <div class="form-group">
+        <%= f.label :date %>
+        <%= f.datetime_field :date, class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= f.label :duration %>
+        <%= f.number_field :duration, class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= f.submit %>
+    </div>
+<% end %>
