@@ -1,1 +1,5 @@
 <%= debug(@activity.inspect) %>
+<p>Duration</p>
+<%= Time.at(@activity.duration).utc.strftime("%H:%M:%S") if @activity.duration.present? %>
+<p>Pace</p>
+<%= Time.at(@activity.calculated_pace).utc.strftime("%H:%M:%S") if @activity.calculated_pace.present? %>

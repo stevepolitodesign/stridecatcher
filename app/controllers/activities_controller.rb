@@ -7,7 +7,7 @@ class ActivitiesController < ApplicationController
     end
 
     def new
-       @activity = current_user.activities.build
+       @activity = current_user.activities.build(date: Time.zone.now)
     end
 
     def create
