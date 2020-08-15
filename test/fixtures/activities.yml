@@ -1,6 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-confirmed_user_activity_one:
-  date: <%= Time.zone.now %>
+<% 1.upto(60) do |i| %>
+confirmed_user_activity_<%= i %>:
+  date: <%= i.days.ago %>
   user: confirmed_user_with_activities
-  duration: 1
+  duration: <%= rand(1800..7200) %>
+  distance: <%= rand(1..26) %>
+  calculated_pace: <%= rand(360..600) %>
+  unit: miles
+<% end %>

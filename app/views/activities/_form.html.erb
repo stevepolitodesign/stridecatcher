@@ -33,5 +33,6 @@
     </div>
     <div class="form-group">
         <%= f.submit class: "btn btn-primary" %>
+        <%= link_to "Delete", activity_path(@activity), method: :delete, data: { confirm: "Are you sure?" } if @activity.persisted? %>
     </div>
 <% end %>
