@@ -29,6 +29,9 @@
         <%= f.number_field :seconds, min: 0, max: 59, step: 1, class: "form-control" %> 
     </div>
     <div class="form-group">
-        <%= f.submit %>
+        <%= f.rich_text_area :description, class: "form-control"%>
+    </div>
+    <div class="form-group">
+        <%= f.submit class: "btn btn-primary" %>
     </div>
 <% end %>

@@ -6,6 +6,8 @@ class Activity < ApplicationRecord
     enum difficulty: [:easy, :moderate, :hard]
     enum unit: [:miles, :kilometers, :meters, :yards]
 
+    has_rich_text :description
+
     before_save :calculate_pace
 
     validates :date, presence: true

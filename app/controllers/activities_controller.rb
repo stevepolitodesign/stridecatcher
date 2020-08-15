@@ -1,6 +1,6 @@
 class ActivitiesController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_activity, only: [:show]
+    before_action :set_activity, only: [:show, :edit, :update]
     before_action :calculate_duration, only: [:create]
 
     def show
@@ -19,10 +19,21 @@ class ActivitiesController < ApplicationController
         end
     end
 
+    def edit
+    end
+
+    def update
+        if @activity.update(activity_params)
+            redirect_to @activity, notice: "Updated Activity"
+        else
+            render "edit"
+        end
+    end
+
     private
 
         def activity_params
-            params.require(:activity).permit(:duration, :category, :distance, :difficulty, :unit, :date)
+            params.require(:activity).permit(:duration, :category, :distance, :difficulty, :unit, :date, :description)
         end
 
         def set_activity
