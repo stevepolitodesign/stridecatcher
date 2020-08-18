@@ -1,5 +1,4 @@
 <%= debug(@activity.inspect) %>
 <p>Duration</p>
 <%= format_duration(@activity.duration) if @activity.duration.present? %>
-<p>Pace</p>
-<%= format_duration(@activity.calculated_pace) if @activity.calculated_pace.present? %>
+<p>Pace: <span><%= format_duration(@activity.calculated_pace) if @activity.calculated_pace.present? %></span></p>
