@@ -61,3 +61,5 @@ gem "honeybadger", "~> 4.7"
 gem 'devise-bootstrapped', github: 'king601/devise-bootstrapped', branch: 'bootstrap4'
 
 gem "pundit", "~> 2.1"
+
+gem "pagy", "~> 3.8"

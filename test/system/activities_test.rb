@@ -55,4 +55,12 @@ class ActivitiesTest < ApplicationSystemTestCase
 
     assert_selector "#form_errors"
   end
+
+  test "should paginate activities" do
+    sign_in @user
+
+    visit activities_path
+    click_link "Next"
+    click_link "Prev"
+  end
 end

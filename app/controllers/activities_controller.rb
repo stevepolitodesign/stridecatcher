@@ -3,7 +3,7 @@ class ActivitiesController < ApplicationController
     before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
     def index
-        @activities = current_user.activities
+        @pagy, @activities = pagy(current_user.activities)
     end
 
     def show
