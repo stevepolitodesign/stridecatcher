@@ -21,3 +21,47 @@ another_confirmed_user_activity_<%= i %>:
   distance: <%= rand(1..26) %>
   unit: miles
 <% end %>
+
+confirmed_user_with_searchable_activity_1:
+  date: <%= Time.zone.now %>
+  user: confirmed_user_with_searchable_activities
+  hours: <%= rand(0..2) %>
+  minutes: <%= rand(1..59) %>
+  seconds: <%= rand(1..59) %>
+  distance: <%= rand(1..26) %>
+  unit: miles
+  difficulty: easy
+  category: run
+
+confirmed_user_with_searchable_activity_2:
+  date: <%= 1.month.ago %>
+  user: confirmed_user_with_searchable_activities
+  hours: <%= rand(0..2) %>
+  minutes: <%= rand(1..59) %>
+  seconds: <%= rand(1..59) %>
+  distance: <%= rand(1..26) %>
+  unit: miles
+  difficulty: moderate
+  category: long_run
+
+confirmed_user_with_searchable_activity_3:
+  date: <%= 1.month.from_now %>
+  user: confirmed_user_with_searchable_activities
+  hours: <%= rand(0..2) %>
+  minutes: <%= rand(1..59) %>
+  seconds: <%= rand(1..59) %>
+  distance: <%= rand(1..26) %>
+  unit: miles
+  difficulty: hard
+  category: workout 
+  
+confirmed_user_with_searchable_activity_4:
+  date: <%= 1.year.ago %>
+  user: confirmed_user_with_searchable_activities
+  hours: <%= rand(0..2) %>
+  minutes: <%= rand(1..59) %>
+  seconds: <%= rand(1..59) %>
+  distance: <%= rand(1..26) %>
+  unit: miles
+  difficulty: hard
+  category: race   

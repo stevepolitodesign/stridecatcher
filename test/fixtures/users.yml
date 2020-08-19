@@ -24,3 +24,8 @@ another_confirmed_user_with_activities:
   email: another_confirmed_user_with_activities@example.com
   confirmed_at: <%= Time.zone.now %>
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>  
+
+confirmed_user_with_searchable_activities:
+  email: confirmed_user_with_searchable_activities@example.com
+  confirmed_at: <%= Time.zone.now %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>

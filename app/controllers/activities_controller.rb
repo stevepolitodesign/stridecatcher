@@ -3,7 +3,8 @@ class ActivitiesController < ApplicationController
     before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
     def index
-        @pagy, @activities = pagy(current_user.activities)
+        @q = current_user.activities.ransack(params[:q])
+        @pagy, @activities = pagy(@q.result(distinct: true))
     end
 
     def show

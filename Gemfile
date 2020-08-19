@@ -63,3 +63,5 @@ gem 'devise-bootstrapped', github: 'king601/devise-bootstrapped', branch: 'boots
 gem "pundit", "~> 2.1"
 
 gem "pagy", "~> 3.8"
+
+gem "ransack", "~> 2.3"
