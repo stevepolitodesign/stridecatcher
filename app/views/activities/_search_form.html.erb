@@ -14,7 +14,11 @@
     <div class="form-group">
         <%= f.label :date_gteq %>
         <%= f.date_field :date_gteq, class: "form-control" %>
-    </div>              
+    </div> 
+    <div class="form-group">
+        <%= f.label :action_text_rich_text_body_cont %>
+        <%= f.search_field :action_text_rich_text_body_cont, class: "form-control" %>
+    </div>                  
     <div class="form-group">
         <%= f.submit class: "btn btn-primary" %>
         <%= link_to "Reset", activities_path %>
