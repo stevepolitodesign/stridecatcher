@@ -63,4 +63,38 @@ class ActivitiesTest < ApplicationSystemTestCase
     click_link "Next"
     click_link "Prev"
   end
+
+  test "should search activities" do
+    @user = users(:confirmed_user_with_searchable_activities)
+    
+    sign_in @user
+
+    visit activities_path
+    select "Hard"
+    click_button "Search"
+
+    within "table" do
+      assert_text "hard", count: 2
+      assert_text "moderate", count: 0
+      assert_text "easy", count: 0
+    end
+
+    click_link "Reset"
+
+    fill_in "Description includes", with: "million"
+    click_button "Search"
+
+    within "table" do
+      assert_text "hard", count: 1
+      assert_text "moderate", count: 0
+      assert_text "easy", count: 0
+    end
+
+    click_link "Reset"
+    
+    fill_in "Description includes", with: "should not yeild results"
+    click_button "Search"
+
+    assert_text "No results."
+  end
 end
