@@ -1,10 +1,10 @@
 
 <tr>
     <th scope="col"><%= activity.date.strftime("%D %r") %></th>
-    <th scope="col"><%= activity.category %></th>
+    <th scope="col"><%= activity.category.humanize %></th>
     <th scope="col"><%= format_duration(activity.duration) if activity.duration.present? %></th>
     <th scope="col"><%= activity.distance %> <%= activity.unit %></th>
-    <th scope="col"><%= activity.difficulty %></th>
+    <th scope="col"><%= activity.difficulty.humanize %></th>
     <th scope="col"><%= format_duration(activity.calculated_pace) if activity.calculated_pace.present? %></th>
     <th scope="col">
         <div class="btn-group">

@@ -45,4 +45,5 @@
             <%= link_to "Delete", activity_path(@activity), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger" if @activity.persisted? %>
         </div>
     </div>
+    <%= link_to "Back", :back %>
 <% end %>
