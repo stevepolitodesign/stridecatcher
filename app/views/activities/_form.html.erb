@@ -1,0 +1,49 @@
+<%= form_with model: @activity, local: true, class: "shadow-sm p-3 rounded-sm border mb-5" do |f| %>
+    <%= render partial: "shared/form_errors", locals: { f: f } %>
+    <div class="form-row">
+        <div class="col-auto form-group">
+            <%= f.label :date %>
+            <%= f.datetime_field :date, class: "form-control" %>
+        </div>
+        <div class="col-auto form-group">
+            <%= f.label :category %>
+            <%= f.collection_select :category, Activity.categories.keys.map{ |activity| [activity, activity.humanize] }, :first, :second, {}, class: "custom-select" %>
+        </div>
+        <div class="col-auto form-group">
+            <%= f.label :difficulty %>
+            <%= f.collection_select :difficulty, Activity.difficulties.keys.map{ |activity| [activity, activity.humanize] }, :first, :second, {}, class: "custom-select" %>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-auto form-group">
+            <%= f.label :distance %>
+            <%= f.number_field :distance, step: 0.01, class: "form-control" %>
+        </div>     
+        <div class="col-auto form-group">
+            <%= f.label :unit %>
+            <%= f.collection_select :unit, Activity.units.keys.map{ |activity| [activity, activity.humanize] }, :first, :second, { prompt: true }, class: "custom-select" %>
+        </div>      
+        <div class="col-auto form-group">
+            <%= f.label :hours %>
+            <%= f.number_field :hours, min: 0, step: 1, class: "form-control" %>
+        </div>
+        <div class="col-auto form-group">
+            <%= f.label :minutes %>
+            <%= f.number_field :minutes, min: 0, max: 59, step: 1, class: "form-control" %>
+        </div>
+        <div class="col-auto form-group">
+            <%= f.label :seconds %>
+            <%= f.number_field :seconds, min: 0, max: 59, step: 1, class: "form-control" %>
+        </div>
+    </div>
+    <div class="form-group">
+        <%= f.rich_text_area :description, class: "form-control"%>
+    </div>
+    <div class="form-group">
+        <div class="btn-group" role="group" aria-label="Form Actions">
+            <%= f.submit class: "btn btn-primary" %>
+            <%= link_to "Delete", activity_path(@activity), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger" if @activity.persisted? %>
+        </div>
+    </div>
+    <%= link_to "Back", :back %>
+<% end %>

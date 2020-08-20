@@ -19,9 +19,8 @@
     <%= render partial: "shared/navbar" %>
     <main class="container">
       <%= render partial: "shared/flash" %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
       <%= yield %>
+      <%= debug(params) if Rails.env == "development" %>
     </main>
   </body>
 </html>

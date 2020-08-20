@@ -1,0 +1,9 @@
+# one:
+#   record: name_of_fixture (ClassOfFixture)
+#   name: content
+#   body: <p>In a <i>million</i> stars!</p>
+
+confirmed_user_with_searchable_activity_text:
+  record: confirmed_user_with_searchable_activity_4 (Activity)
+  name: description
+  body: <p>In a <i>million</i> stars!</p>  

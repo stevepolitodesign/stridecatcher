@@ -41,4 +41,11 @@ class UsersTest < ApplicationSystemTestCase
 
     assert_equal 'Eastern Time (US & Canada)', @user.reload.time_zone
   end
+
+  test "should render form errors" do
+    visit new_user_registration_path
+    click_button "Sign up"
+    
+    assert_selector "#form_errors"
+  end
 end

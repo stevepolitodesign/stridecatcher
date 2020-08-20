@@ -7,6 +7,15 @@
         <ul class="navbar-nav">
             <% if current_user %>
                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownActivities" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Activities
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownActivities">
+                        <%= link_to "View My Activities", activities_path, class: "dropdown-item" %>
+                        <%= link_to "Create an Activity", new_activity_path, class: "dropdown-item" %>
+                    </div>                    
+                </li>
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         My Profile
                     </a>

@@ -1,0 +1,29 @@
+<h1 class="mb-5">My <%= @activity.category.humanize %> on <%= @activity.date.strftime("%D %r") %></h1>
+<div class="table-responsive mb-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Duration</th>
+                <th scope="col">Distance</th>
+                <th scope="col">Difficulty</th>
+                <th scope="col">Pace</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="col"><%= format_duration(@activity.duration) if @activity.duration.present? %></th>
+                <th scope="col"><%= @activity.distance %> <%= @activity.unit %></th>
+                <th scope="col"><%= @activity.difficulty %></th>
+                <th scope="col"><%= format_duration(@activity.calculated_pace) if @activity.calculated_pace.present? %></th>
+                <th scope="col">
+                    <div class="btn-group">
+                        <%= link_to "Edit", edit_activity_path(@activity), class: "btn btn-sm btn-outline-primary" %>
+                    </div>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<%= @activity.description %>
+<%= link_to "Back", :back %>

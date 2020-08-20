@@ -6,7 +6,7 @@
     <h1 class="text-center">Account</h1>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= render partial: 'devise/shared/error_messages', resource: resource %>
+      <%= render partial: "shared/form_errors", locals: { f: f } %>
 
       <div class="form-group">
         <%= f.email_field :email, class: 'form-control', placeholder: 'Email Address' %>
