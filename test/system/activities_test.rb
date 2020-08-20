@@ -21,7 +21,7 @@ class ActivitiesTest < ApplicationSystemTestCase
 
     click_button "Create Activity"
 
-    assert_selector "span", text: "00:07:00"
+    assert_text "00:07:00"
   end
 
   test "should update activity" do
@@ -33,7 +33,7 @@ class ActivitiesTest < ApplicationSystemTestCase
 
     click_button "Update Activity"
 
-    assert_selector "p", text: "Updated Activity"
+    assert_text "Updated Activity"
   end
   
   test "should delete activity" do
@@ -44,7 +44,7 @@ class ActivitiesTest < ApplicationSystemTestCase
       click_link "Delete"
     end
 
-    assert_selector "p", text: "Activity Deleted"
+    assert_text "Activity Deleted"
   end
 
   test "should render form errors" do
@@ -74,9 +74,9 @@ class ActivitiesTest < ApplicationSystemTestCase
     click_button "Search"
 
     within "table" do
-      assert_text "hard", count: 2
-      assert_text "moderate", count: 0
-      assert_text "easy", count: 0
+      assert_text "Hard", count: 2
+      assert_text "Moderate", count: 0
+      assert_text "Easy", count: 0
     end
 
     click_link "Reset"
@@ -85,9 +85,9 @@ class ActivitiesTest < ApplicationSystemTestCase
     click_button "Search"
 
     within "table" do
-      assert_text "hard", count: 1
-      assert_text "moderate", count: 0
-      assert_text "easy", count: 0
+      assert_text "Hard", count: 1
+      assert_text "Moderate", count: 0
+      assert_text "Easy", count: 0
     end
 
     click_link "Reset"
