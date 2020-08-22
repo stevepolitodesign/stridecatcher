@@ -106,6 +106,24 @@ class ActivityTest < ActiveSupport::TestCase
 
     @activity.seconds = 60
     assert_not @activity.valid?
-  end   
+  end
+  
+  test "should create total record when saved" do
+    @user = users(:confirmed_user)
+    week = Time.zone.now.to_date.cweek
+    year = Time.zone.now.to_date.cwyear
+    starting_on = Date.commercial(year, week)
+    
+    assert_difference("Total.count", 1) do
+      7.times do |i|
+        @user.activities.create(date: starting_on + i.days, hours: 1, minutes: 0, seconds: 0, unit: "miles", distance: 10)
+      end
+    end
+
+    @total = @user.totals.last
+
+    assert_equal 25200, @total.duration
+    assert_equal 70, @total.distance
+  end
 
 end
