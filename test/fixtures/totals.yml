@@ -2,12 +2,23 @@
 
 one:
   user: one
-  date: 2020-08-21
+  starting_on: 2020-08-21
   duration: 1
   distance: 9.99
+  range: week
 
 two:
   user: two
-  date: 2020-08-21
+  starting_on: 2020-08-21
   duration: 1
   distance: 9.99
+  range: week
+
+<% 1.upto(10) do |i| %>
+confirmed_user_with_totals_total_<%= i %>:
+  user: confirmed_user_with_totals
+  starting_on: <%= i.months.ago %>
+  duration: <%= rand(1..100) %>
+  distance: <%= rand(1..100) %>
+  range: week
+<% end %>

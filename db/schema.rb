@@ -65,9 +65,10 @@ ActiveRecord::Schema.define(version: 2020_08_21_110618) do
 
   create_table "totals", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.date "date", null: false
+    t.date "starting_on", null: false
     t.integer "duration", default: 0
     t.decimal "distance", default: "0.0"
+    t.integer "range", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_totals_on_user_id"
