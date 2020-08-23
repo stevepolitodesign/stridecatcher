@@ -135,6 +135,16 @@ class ActivityTest < ActiveSupport::TestCase
     @activity_one.destroy
     assert_equal 10, @total.reload.distance
     assert_equal 3600, @total.reload.duration
-  end  
+  end 
+  
+  test "should update total record when actvity is updated" do
+    @user = users(:confirmed_user)
+    @activity = @user.activities.create(date: Time.zone.now, hours: 1, minutes: 0, seconds: 0, unit: "miles", distance: 10)
+    @total = @user.totals.last
+    
+    @activity.update(distance: 20, hours: 2, minutes: 0, seconds: 0 )
+    assert_equal 20, @total.reload.distance
+    assert_equal 7200, @total.reload.duration
+  end   
 
 end
