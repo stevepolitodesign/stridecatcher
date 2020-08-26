@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_22_121917) do
+ActiveRecord::Schema.define(version: 2020_08_26_101427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2020_08_22_121917) do
     t.integer "hours"
     t.integer "minutes"
     t.integer "seconds"
+    t.decimal "distance_in_miles", precision: 5, scale: 2
     t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
