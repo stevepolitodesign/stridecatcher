@@ -106,10 +106,7 @@ class ActivityTest < ActiveSupport::TestCase
   end
   
   test "should create total record when saved" do
-    @user = users(:confirmed_user)
-    week = Time.zone.now.to_date.cweek
-    year = Time.zone.now.to_date.cwyear
-    starting_on = Date.commercial(year, week)
+    starting_on = Time.zone.now.beginning_of_week
     
     assert_difference("Total.count", 1) do
       7.times do |i|
