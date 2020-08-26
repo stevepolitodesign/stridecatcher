@@ -54,8 +54,7 @@ class ActivityTest < ActiveSupport::TestCase
     @activity.unit = :kilometers
     @activity.duration = 1800
     @activity.save
-    converted_distance = @activity.distance * 0.6213712
-    pace = @activity.duration / converted_distance
+    pace = @activity.duration / @activity.distance_in_miles
 
     assert_equal pace, @activity.reload.calculated_pace
 
@@ -63,8 +62,7 @@ class ActivityTest < ActiveSupport::TestCase
     @activity.unit = :meters
     @activity.duration = 120
     @activity.save
-    converted_distance = @activity.distance * 0.0006213711985
-    pace = @activity.duration / converted_distance
+    pace = @activity.duration / @activity.distance_in_miles
 
     assert_equal pace, @activity.reload.calculated_pace 
     
@@ -72,8 +70,7 @@ class ActivityTest < ActiveSupport::TestCase
     @activity.unit = :yards
     @activity.duration = 90
     @activity.save
-    converted_distance = @activity.distance * 0.0005681818239083977
-    pace = @activity.duration / converted_distance
+    pace = @activity.duration / @activity.distance_in_miles
 
     assert_equal pace, @activity.reload.calculated_pace     
   end
@@ -106,6 +103,42 @@ class ActivityTest < ActiveSupport::TestCase
 
     @activity.seconds = 60
     assert_not @activity.valid?
+  end
+  
+  test "should create total record when saved" do
+    starting_on = Time.zone.now.beginning_of_week
+    
+    assert_difference("Total.count", 1) do
+      7.times do |i|
+        @user.activities.create(date: starting_on + i.days, hours: 1, minutes: 0, seconds: 0, unit: "miles", distance: 10)
+      end
+    end
+
+    @total = @user.totals.last
+
+    assert_equal 25200, @total.duration
+    assert_equal 70, @total.distance
+  end
+
+  test "should update total record when actvity is destroyed" do
+    @user = users(:confirmed_user)
+    @activity_one = @user.activities.create(date: Time.zone.now, hours: 1, minutes: 0, seconds: 0, unit: "miles", distance: 10)
+    @activity_two =  @user.activities.create(date: Time.zone.now, hours: 1, minutes: 0, seconds: 0, unit: "miles", distance: 10)
+    @total = @user.totals.last
+    
+    @activity_one.destroy
+    assert_equal 10, @total.reload.distance
+    assert_equal 3600, @total.reload.duration
+  end 
+  
+  test "should update total record when actvity is updated" do
+    @user = users(:confirmed_user)
+    @activity = @user.activities.create(date: Time.zone.now, hours: 1, minutes: 0, seconds: 0, unit: "miles", distance: 10)
+    @total = @user.totals.last
+    
+    @activity.update(distance: 20, hours: 2, minutes: 0, seconds: 0 )
+    assert_equal 20, @total.reload.distance
+    assert_equal 7200, @total.reload.duration
   end   
 
 end

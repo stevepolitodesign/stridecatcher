@@ -4,6 +4,7 @@ class UserTest < ActiveSupport::TestCase
   def setup
     @user = User.new(email: "unique@example.com", password: "password", password_confirmation: "password")
     @user_with_activities = users(:confirmed_user_with_activities)
+    @user_with_totals = users(:confirmed_user_with_totals)
   end
 
   test "should be valid" do
@@ -16,8 +17,16 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "should delete associated activities" do
-    assert_difference("Activity.count", -"#{@user_with_activities.activities.count}".to_i) do
+    count = @user_with_activities.activities.count
+    assert_difference("Activity.count", -(count)) do
       @user_with_activities.destroy
     end
   end
+
+  test "should delete associated totals" do
+    count = @user_with_totals.totals.count
+    assert_difference("Total.count", -(count)) do
+      @user_with_totals.destroy
+    end
+  end  
 end
