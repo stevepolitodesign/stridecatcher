@@ -13,7 +13,7 @@ class Activity < ApplicationRecord
     before_save :calculate_distance_in_miles
     before_save :calculate_pace
     after_save :create_or_update_total
-    after_destroy :subract_from_total
+    after_destroy :create_or_update_total
 
     validates :date, presence: true
     validates :duration, numericality: { only_integer: true, greater_than_or_equal_to: 1, allow_nil: true }
@@ -77,31 +77,6 @@ class Activity < ApplicationRecord
             @total.distance = total_distance unless total_distance.nil?
             @total.duration = total_duration unless total_duration.nil?
             @total.save
-        end
-
-        def subract_from_total
-            week = self.date.to_date.cweek
-            year = self.date.to_date.cwyear
-            starting_on = Date.commercial(year, week)
-            
-            original_duration = self.duration
-            
-            case self.unit
-            when "miles"
-                converted_distance = self.distance
-            when "kilometers"
-                converted_distance = self.distance * 0.6213712
-            when "meters"
-                converted_distance = self.distance * 0.0006213711985
-            when "yards"
-                converted_distance = self.distance * 0.0005681818239083977
-            end
-            @total = Total.find_by(user: self.user, starting_on: starting_on, range: "week")
-            unless @total.nil?
-                @total.distance =  @total.distance - converted_distance
-                @total.duration =  @total.duration - original_duration
-                @total.save
-            end
         end
         
 end
