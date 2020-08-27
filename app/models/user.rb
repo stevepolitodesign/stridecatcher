@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :activities, dependent: :destroy
   has_many :totals, dependent: :destroy
+  has_many :shoes, dependent: :destroy
 end
