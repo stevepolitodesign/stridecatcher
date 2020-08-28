@@ -11,7 +11,7 @@ class NotifyUsersTest < ActionDispatch::IntegrationTest
     sign_in @user
     difference = @shoe.allowed_distance_in_miles - @shoe.distance_in_miles
     assert_emails 1 do
-      post activities_path, params: { activity: { date: Time.zone.now, distance: difference, unit: "miles", user:  @user } }
+      post activities_path, params: { activity: { date: Time.zone.now, distance: difference, unit: "miles", user:  @user, shoe_id: @shoe.id } }
     end
   end
 end

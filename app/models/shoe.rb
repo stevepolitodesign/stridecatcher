@@ -10,7 +10,8 @@ class Shoe < ApplicationRecord
     private
 
         def notify_user
-            # send email
+            NotifyUserMailer.shoe_mileage_reached(self.user).deliver_now
+            self.notified = true
         end
 
         def user_should_be_notified?
