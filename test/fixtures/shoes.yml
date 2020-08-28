@@ -8,3 +8,10 @@ confirmed_user_with_shoes_shoe_<%= i %>:
   allowed_distance_in_miles: 500
   user: confirmed_user_with_shoes
 <% end %>
+
+confirmed_user_with_shoes_shoe:
+  name: Shoe
+  distance_in_miles: 0
+  retired: false
+  allowed_distance_in_miles: 10
+  user: confirmed_user_with_shoe

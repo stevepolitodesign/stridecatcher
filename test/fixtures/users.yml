@@ -38,4 +38,9 @@ confirmed_user_with_totals:
 confirmed_user_with_shoes:
   email: confirmed_user_with_shoes@example.com
   confirmed_at: <%= Time.zone.now %>
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+confirmed_user_with_shoe:
+  email: confirmed_user_with_shoe@example.com
+  confirmed_at: <%= Time.zone.now %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
