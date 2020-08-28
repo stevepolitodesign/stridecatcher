@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class ShoeTest < ActiveSupport::TestCase
-  include ActionMailer::TestHelper
 
   def setup
     @user = users(:confirmed_user)
@@ -23,14 +22,5 @@ class ShoeTest < ActiveSupport::TestCase
 
     @shoe.allowed_distance_in_miles = -1
     assert_not @shoe.valid?    
-  end
-
-  test "should notifiy user when allowed_distance_in_miles is reached" do
-    @user = users(:confirmed_user_with_shoe)
-    @shoe = shoes(:confirmed_user_with_shoes_shoe)
-    difference = @shoe.allowed_distance_in_miles - @shoe.distance_in_miles
-    assert_emails 1 do
-      @shoe.update(distance_in_miles: difference)
-    end
   end
 end
