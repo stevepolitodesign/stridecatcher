@@ -1,6 +1,7 @@
 class Activity < ApplicationRecord
     self.ignored_columns = ["pace"]
     belongs_to :user
+    belongs_to :shoe, optional: true
 
     enum category: [:run, :long_run, :workout, :race, :other]
     enum difficulty: [:easy, :moderate, :hard]
@@ -14,6 +15,8 @@ class Activity < ApplicationRecord
     before_save :calculate_pace
     after_save :create_or_update_total
     after_destroy :create_or_update_total
+    after_save :update_shoe_distance_in_miles
+    after_destroy :update_shoe_distance_in_miles
 
     validates :date, presence: true
     validates :duration, numericality: { only_integer: true, greater_than_or_equal_to: 1, allow_nil: true }
@@ -50,7 +53,7 @@ class Activity < ApplicationRecord
         end
 
         def calculate_pace
-            self.calculated_pace = self.duration / self.distance_in_miles if self.distance_in_miles.present?
+            self.calculated_pace = self.duration / self.distance_in_miles if self.distance_in_miles.present? && self.duration
         end
 
         def calculate_duration
@@ -75,6 +78,14 @@ class Activity < ApplicationRecord
             @total.distance = total_distance unless total_distance.nil?
             @total.duration = total_duration unless total_duration.nil?
             @total.save
+        end
+
+        def update_shoe_distance_in_miles
+            unless self.shoe.nil?
+                @activities = Activity.where(shoe: self.shoe) 
+                total_distance = @activities.sum(:distance_in_miles)
+                self.shoe.update(distance_in_miles: total_distance)
+            end
         end
         
 end
