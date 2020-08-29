@@ -7,7 +7,13 @@ class Shoe < ApplicationRecord
 
     after_save :notify_user, if: :user_should_be_notified?
 
-    scope :ordered, -> { order(retired: :asc).order(name: :asc) }
+    scope :alphabetized, -> { order(name: :asc) }
+    scope :ordered, -> { order(retired: :asc) }
+    scope :available, -> { where(retired: false) }
+
+    def name_with_miles
+        "#{self.name} (#{self.distance_in_miles} miles)"
+    end
 
     private
 
