@@ -8,6 +8,7 @@ class ShoesController < ApplicationController
     end
 
     def new
+        authorize @shoe
         @shoe = current_user.shoes.build
     end
 
@@ -21,9 +22,11 @@ class ShoesController < ApplicationController
     end
 
     def edit
+        authorize @shoe
     end
 
     def update
+        authorize @shoe
         if @shoe.update(shoe_params)
             redirect_to shoes_path, notice: "Shoe Updated"
         else
@@ -32,6 +35,7 @@ class ShoesController < ApplicationController
     end
 
     def destroy
+        authorize @shoe
         @shoe.destroy
         redirect_to shoes_path, notice: "Shoe Deleted"
     end
