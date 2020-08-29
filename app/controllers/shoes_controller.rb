@@ -1,12 +1,9 @@
 class ShoesController < ApplicationController
     before_action :authenticate_user!
     
-    before_action :set_shoe, only: [:show, :destroy]
+    before_action :set_shoe, only: [:edit, :update, :destroy]
 
     def index
-    end
-
-    def show
     end
 
     def new
@@ -19,6 +16,17 @@ class ShoesController < ApplicationController
             redirect_to shoes_path, notice: "Shoe Created"
         else
             render "new"
+        end
+    end
+
+    def edit
+    end
+
+    def update
+        if @shoe.update(shoe_params)
+            redirect_to shoes_path, notice: "Shoe Updated"
+        else
+            render "edit"
         end
     end
 

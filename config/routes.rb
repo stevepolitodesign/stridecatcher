@@ -11,5 +11,5 @@ Rails.application.routes.draw do
 
   resources :activities
   resources :totals, only: [:index]
-  resources :shoes
+  resources :shoes, except: [:show]
 end
