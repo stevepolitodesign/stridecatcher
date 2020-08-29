@@ -1,10 +1,14 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-<% 1.upto(2) do |i| %>
+<% 1.upto(100) do |i| %>
 confirmed_user_with_shoes_shoe_<%= i %>:
   name: Shoe <%= i %>
-  distance_in_miles: 0
+  distance_in_miles: <%= rand(1..900) %>
+  <% if i % 3 == 0 %> 
+  retired: true
+  <% else %>
   retired: false
+  <% end %>
   allowed_distance_in_miles: 500
   user: confirmed_user_with_shoes
 <% end %>

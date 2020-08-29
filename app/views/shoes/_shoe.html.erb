@@ -1,0 +1,10 @@
+<tr>
+    <th scope="col"><%= shoe.name %></th>
+    <th scope="col"><%= shoe.distance_in_miles %> miles</th>
+    <th scope="col"><%= shoe.retired? %></th>
+    <th scope="col">
+        <div class="btn-group">
+            <%= link_to "Edit", edit_shoe_path(shoe), class: "btn btn-sm btn-outline-primary" %>
+        </div>
+    </th>
+</tr>
