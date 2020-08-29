@@ -1,0 +1,22 @@
+<%= form_with model: @shoe, local: true, class: "shadow-sm p-3 rounded-sm border mb-5" do |f| %>
+    <%= render partial: "shared/form_errors", locals: { f: f } %>
+    <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= f.label :allowed_distance_in_miles, "Notifiy me when my shoe hits this mileage" %>
+        <%= f.number_field :allowed_distance_in_miles, min: 0, step: 1, class: "form-control" %>
+    </div>  
+    <div class="form-group">
+        <%= f.label :retired %>
+        <%= f.check_box :retired, class: "" %>
+    </div>
+    <div class="form-group">
+        <div class="btn-group" role="group" aria-label="Form Actions">
+            <%= f.submit class: "btn btn-primary" %>
+            <%= link_to "Delete", shoe_path(@shoe), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger" if @shoe.persisted? %>
+        </div>
+    </div>
+    <%= link_to "Back", :back %>
+<% end %>
