@@ -20,6 +20,17 @@ class ShoesTest < ApplicationSystemTestCase
     assert_text "Shoe Created"    
   end
 
+  test "creating a new shoe without a entering a value for allowed_distance_in_miles" do
+    sign_in @user
+    
+    visit new_shoe_path
+
+    fill_in "Name", with: "Shoe"
+    click_button "Create Shoe"
+
+    assert_text "Shoe Created"    
+  end  
+
   test "rendering form errors" do
     sign_in @user
     
