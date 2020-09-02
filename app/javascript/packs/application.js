@@ -30,3 +30,13 @@ require("@rails/actiontext")
 document.addEventListener("trix-file-accept", (e)=>{
     e.preventDefault();
 });
+
+document.addEventListener("ajax:success", (e)=>{
+    var detail = e.detail;
+    var data = detail[0], status = detail[1], xhr = detail[2];
+    let shoeFormModal = document.querySelector("#shoeFormModal");
+
+    if(shoeFormModal && status === "OK") {
+        $('#shoeFormModal').modal('hide');
+    }
+});
