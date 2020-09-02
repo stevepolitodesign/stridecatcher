@@ -1,5 +1,5 @@
 <%= form_with model: @activity, local: true, class: "shadow-sm p-3 rounded-sm border mb-5" do |f| %>
-    <%= render partial: "shared/form_errors", locals: { f: f } %>
+    <%= render partial: "shared/form_errors", locals: { object: f.object } %>
     <div class="form-row">
         <div class="col-auto form-group">
             <%= f.label :date %>
@@ -70,7 +70,7 @@
       </div>
       <div class="modal-body">
         <%= form_with model: @shoe, id: dom_id(@shoe), remote: true do |f| %>
-            <%= render partial: "shared/form_errors", locals: { f: f } %>
+            <%= render partial: "shared/form_errors", locals: { object: f.object } %>
             <div class="form-group">
                 <%= f.label :name %>
                 <%= f.text_field :name, class: "form-control" %>
