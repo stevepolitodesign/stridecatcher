@@ -1,0 +1,6 @@
+var wrapper = document.querySelector("#shoes_select_wrapper");
+
+if(wrapper) {
+    wrapper.innerHTML = null;
+    wrapper.insertAdjacentHTML("afterbegin", <%= escape_javascript( render partial: "activities/shoes_select", locals: { f: @shoe } )%>);
+}

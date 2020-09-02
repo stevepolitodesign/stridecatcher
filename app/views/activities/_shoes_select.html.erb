@@ -1,0 +1,6 @@
+<%= f.label :shoe_id, "Shoe" %>
+<% if f.object.persisted? %>
+    <%= f.collection_select :shoe_id, current_user.shoes.alphabetized, :id, :name_with_miles, { prompt: true }, class: "custom-select" %>
+<% else %>
+    <%= f.collection_select :shoe_id, current_user.shoes.available.alphabetized, :id, :name_with_miles, { prompt: true }, class: "custom-select" %>
+<% end %>

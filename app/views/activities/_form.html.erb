@@ -14,12 +14,12 @@
             <%= f.collection_select :difficulty, Activity.difficulties.keys.map{ |activity| [activity, activity.humanize] }, :first, :second, {}, class: "custom-select" %>
         </div>
         <div class="col-auto form-group">
-            <%= f.label :shoe_id, "Shoe" %>
-            <% if f.object.persisted? %>
-                <%= f.collection_select :shoe_id, current_user.shoes.alphabetized, :id, :name_with_miles, { prompt: true }, class: "custom-select" %>
-            <% else %>
-                <%= f.collection_select :shoe_id, current_user.shoes.available.alphabetized, :id, :name_with_miles, { prompt: true }, class: "custom-select" %>
-            <% end %>
+            <div id="shoes_select_wrapper">
+            <%= render partial: "activities/shoes_select", locals: { f: f } %>
+            </div>
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#shoeFormModal">
+                Add Shoe
+            </button>
         </div>        
     </div>
     <div class="form-row">
@@ -55,3 +55,42 @@
     </div>
     <%= link_to "Back", :back %>
 <% end %>
+
+<div class="modal fade" id="shoeFormModal" tabindex="-1" aria-labelledby="shoeFormModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="shoeFormModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_with model: @shoe, remote: true do |f| %>
+            <%= render partial: "shared/form_errors", locals: { f: f } %>
+            <div class="form-group">
+                <%= f.label :name %>
+                <%= f.text_field :name, class: "form-control" %>
+            </div>
+            <div class="form-group">
+                <%= f.label :allowed_distance_in_miles, "Notifiy me when my shoe hits this mileage" %>
+                <%= f.number_field :allowed_distance_in_miles, min: 0, step: 1, class: "form-control" %>
+            </div>  
+            <div class="form-group">
+                <%= f.label :retired %>
+                <%= f.check_box :retired, class: "" %>
+            </div>
+            <div class="form-group">
+                <div class="btn-group" role="group" aria-label="Form Actions">
+                    <%= f.submit class: "btn btn-primary" %>
+                </div>
+            </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

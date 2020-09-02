@@ -13,6 +13,7 @@ class ActivitiesController < ApplicationController
 
     def new
        @activity = current_user.activities.build(date: Time.zone.now)
+       @shoe = current_user.shoes.build
     end
 
     def create

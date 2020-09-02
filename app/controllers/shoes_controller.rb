@@ -8,16 +8,18 @@ class ShoesController < ApplicationController
     end
 
     def new
-        authorize @shoe
         @shoe = current_user.shoes.build
     end
 
     def create
         @shoe = current_user.shoes.create(shoe_params)
-        if @shoe.save
-            redirect_to shoes_path, notice: "Shoe Created"
-        else
-            render "new"
+        respond_to do |format|
+            if @shoe.save
+                format.html { redirect_to shoes_path, notice: "Shoe Created" }
+                format.js
+            else
+                format.html { render "new" }
+            end
         end
     end
 
