@@ -14,9 +14,12 @@
             <%= f.collection_select :difficulty, Activity.difficulties.keys.map{ |activity| [activity, activity.humanize] }, :first, :second, {}, class: "custom-select" %>
         </div>
         <div class="col-auto form-group">
-            <div id="shoes_select_wrapper">
-            <%= render partial: "activities/shoes_select", locals: { f: f } %>
-            </div>
+            <%= f.label :shoe_id, "Shoe" %>
+            <% if f.object.persisted? %>
+                <%= f.collection_select :shoe_id, current_user.shoes.alphabetized, :id, :name_with_miles, { prompt: true }, class: "custom-select" %>
+            <% else %>
+                <%= f.collection_select :shoe_id, current_user.shoes.available.alphabetized, :id, :name_with_miles, { prompt: true }, class: "custom-select" %>
+            <% end %>
             <button type="button" class="btn btn-link" data-toggle="modal" data-target="#shoeFormModal">
                 Add Shoe
             </button>

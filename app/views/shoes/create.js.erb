@@ -1,6 +1,9 @@
-var wrapper = document.querySelector("#shoes_select_wrapper");
+var shoeSelectList = document.querySelector("#activity_shoe_id");
 
-if(wrapper) {
-    wrapper.innerHTML = null;
-    wrapper.insertAdjacentHTML("afterbegin", <%= escape_javascript( render partial: "activities/shoes_select", locals: { f: @shoe } )%>);
+if(shoeSelectList) {
+    var options = shoeSelectList.querySelectorAll("option");
+    options.forEach((option) => {
+        option.removeAttribute("selected")
+    });
+    shoeSelectList.querySelector("option").insertAdjacentHTML("afterend", "<option value='<%= @shoe.id %>' selected><%= @shoe.name_with_miles %></option>");
 }
