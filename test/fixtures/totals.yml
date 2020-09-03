@@ -4,14 +4,14 @@ one:
   user: one
   starting_on: 2020-08-21
   duration: 1
-  distance: 9.99
+  distance_in_miles: 9.99
   range: week
 
 two:
   user: two
   starting_on: 2020-08-21
   duration: 1
-  distance: 9.99
+  distance_in_miles: 9.99
   range: week
 
 <% 1.upto(10) do |i| %>
@@ -19,6 +19,6 @@ confirmed_user_with_totals_total_<%= i %>:
   user: confirmed_user_with_totals
   starting_on: <%= i.weeks.ago.beginning_of_week %>
   duration: <%= rand(1..100) %>
-  distance: <%= rand(1..100) %>
+  distance_in_miles: <%= rand(1..100) %>
   range: week
 <% end %>

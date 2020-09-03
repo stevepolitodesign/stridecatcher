@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_28_101708) do
+ActiveRecord::Schema.define(version: 2020_09_03_101950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2020_08_28_101708) do
     t.bigint "user_id", null: false
     t.date "starting_on", null: false
     t.integer "duration", default: 0
-    t.decimal "distance", default: "0.0"
+    t.decimal "distance_in_miles", default: "0.0"
     t.integer "range", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

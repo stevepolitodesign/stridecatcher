@@ -19,7 +19,7 @@ class TotalsTest < ApplicationSystemTestCase
     visit totals_path
     @total = @user.totals.last
     assert_text "#{@total.starting_on.strftime("%D")} through #{@total.starting_on.end_of_week.strftime("%D")}"
-    assert_text @total.distance
+    assert_text @total.distance_in_miles
     assert_text "02:20:00"
 
     take_screenshot

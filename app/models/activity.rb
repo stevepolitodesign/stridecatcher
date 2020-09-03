@@ -74,10 +74,10 @@ class Activity < ApplicationRecord
             @total = Total.find_or_initialize_by(user: self.user, starting_on: starting_on, range: "week")
             @activities = Activity.where("date >= ?", starting_on).where("date <= ?", starting_on.end_of_week).where(user: self.user)
             
-            total_distance = @activities.sum(:distance_in_miles) unless @activities.empty?
+            total_distance_in_miles = @activities.sum(:distance_in_miles) unless @activities.empty?
             total_duration = @activities.sum(:duration) unless @activities.empty?
 
-            @total.distance = total_distance unless total_distance.nil?
+            @total.distance_in_miles = total_distance_in_miles unless total_distance_in_miles.nil?
             @total.duration = total_duration unless total_duration.nil?
             @total.save
         end

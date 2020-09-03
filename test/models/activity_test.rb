@@ -117,7 +117,7 @@ class ActivityTest < ActiveSupport::TestCase
     @total = @user.totals.last
 
     assert_equal 25200, @total.duration
-    assert_equal 70, @total.distance
+    assert_equal 70, @total.distance_in_miles
   end
 
   test "should update total record when actvity is destroyed" do
@@ -127,7 +127,7 @@ class ActivityTest < ActiveSupport::TestCase
     @total = @user.totals.last
     
     @activity_one.destroy
-    assert_equal 10, @total.reload.distance
+    assert_equal 10, @total.reload.distance_in_miles
     assert_equal 3600, @total.reload.duration
   end 
   
@@ -137,7 +137,7 @@ class ActivityTest < ActiveSupport::TestCase
     @total = @user.totals.last
     
     @activity.update(distance: 20, hours: 2, minutes: 0, seconds: 0 )
-    assert_equal 20, @total.reload.distance
+    assert_equal 20, @total.reload.distance_in_miles
     assert_equal 7200, @total.reload.duration
   end
 
