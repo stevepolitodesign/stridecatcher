@@ -1,0 +1,18 @@
+<div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control " %>
+</div>
+<div class="form-group">
+    <div class="form-row">
+        <div class="col col-9">
+            <%= f.label :allowed_distance_in_miles, "Notifiy me when my shoe hits this mileage" %>
+        </div>
+        <div class="col col-3">
+            <%= f.number_field :allowed_distance_in_miles, min: 0, step: 1, class: "form-control" %>
+        </div>  
+    </div>
+</div>  
+<div class="form-group">
+    <%= f.label :retired %>
+    <%= f.check_box :retired, class: "" %>
+</div>

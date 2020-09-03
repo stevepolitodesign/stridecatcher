@@ -156,6 +156,15 @@ class ActivityTest < ActiveSupport::TestCase
     @activity.destroy
 
     assert_equal 0.0, @shoe.reload.distance_in_miles
-  end    
+  end
+
+  test "should set shoe to nil if asssociated shoe is destroyed" do
+    @user = users(:confirmed_user_with_shoes)
+    @shoe = @user.shoes.first
+    @activity = @user.activities.create(distance: 10, unit: "miles", shoe: @shoe, date: Time.zone.now)
+    @shoe.destroy
+
+    assert_nil @activity.reload.shoe
+  end
 
 end

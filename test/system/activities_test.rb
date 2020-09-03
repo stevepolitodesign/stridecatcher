@@ -5,6 +5,8 @@ class ActivitiesTest < ApplicationSystemTestCase
 
   def setup
     @user = users(:confirmed_user_with_activities)
+    @user_with_shoe = users(:confirmed_user_with_shoe)
+    @shoe = shoes(:confirmed_user_with_shoes_shoe)
     @activity = @user.activities.last
   end
 
@@ -97,4 +99,46 @@ class ActivitiesTest < ApplicationSystemTestCase
 
     assert_text "No results."
   end
+
+  test "should set shoe when creating an activity" do
+    sign_in @user_with_shoe
+
+    visit new_activity_path
+
+    fill_in "Distance", with: "10.0"
+    select "Miles"
+    select "#{@shoe.name_with_miles}"
+
+    click_button "Create Activity"
+
+    assert_text "Created Activity"
+  end
+  
+  test "should create shoe" do
+    sign_in @user
+
+    visit new_activity_path
+
+    click_button "Add Shoe"
+    within "#new_shoe" do
+      fill_in "Name", with: "Foo Bar Baz"
+      click_button "Create Shoe"
+    end
+
+    within "#activity_shoe_id" do
+      assert_text "Foo Bar Baz (0.0 miles)"
+    end
+  end
+
+  test "should render form errors when creating shoe" do
+    sign_in @user
+
+    visit new_activity_path
+
+    click_button "Add Shoe"
+    within "#new_shoe" do
+      click_button "Create Shoe"
+      assert_selector "#form_errors"
+    end
+  end  
 end

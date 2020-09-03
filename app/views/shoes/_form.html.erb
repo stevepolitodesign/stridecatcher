@@ -1,0 +1,11 @@
+<%= form_with model: @shoe, local: true, class: "shadow-sm p-3 rounded-sm border mb-5" do |f| %>
+    <%= render partial: "shared/form_errors", locals: { object: f.object } %>
+    <%= render partial: "shoes/form_fields", locals: { f: f } %>
+    <div class="form-group">
+        <div class="btn-group" role="group" aria-label="Form Actions">
+            <%= f.submit class: "btn btn-primary" %>
+            <%= link_to "Delete", shoe_path(@shoe), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger" if @shoe.persisted? %>
+        </div>
+    </div>
+    <%= link_to "Back", :back %>
+<% end %>

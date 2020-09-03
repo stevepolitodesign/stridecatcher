@@ -1,6 +1,7 @@
 class ActivitiesController < ApplicationController
     before_action :authenticate_user!
     before_action :set_activity, only: [:show, :edit, :update, :destroy]
+    before_action :set_shoe
 
     def index
         @q = current_user.activities.ransack(params[:q])
@@ -51,5 +52,9 @@ class ActivitiesController < ApplicationController
 
         def set_activity
             @activity = Activity.find(params[:id])
+        end
+
+        def set_shoe
+            @shoe = current_user.shoes.build
         end
 end

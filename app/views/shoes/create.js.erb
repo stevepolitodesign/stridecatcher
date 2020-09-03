@@ -1,0 +1,14 @@
+var shoeSelectList = document.querySelector("#activity_shoe_id");
+var shoeForm = document.querySelector("#new_shoe");
+
+if(shoeSelectList && shoeForm) {
+    var formErrors = shoeForm.querySelector("#form_errors")
+    formErrors && formErrors.remove();
+    var options = shoeSelectList.querySelectorAll("option");
+    options.forEach((option) => {
+        option.removeAttribute("selected")
+    });
+    shoeSelectList.querySelector("option").insertAdjacentHTML("afterend", "<option value='<%= @shoe.id %>' selected><%= @shoe.name_with_miles %></option>");
+
+    shoeForm.reset();
+}

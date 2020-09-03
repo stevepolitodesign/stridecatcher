@@ -1,0 +1,22 @@
+<% unless @shoes.empty? %>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+          <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Distance</th>
+              <th scope="col">Retired</th>
+              <th scope="col">Actions</th>
+          </tr>
+      </thead>
+      <tbody>
+          <%= render @shoes %>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-center">
+    <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
+<% else %>
+    <p><%= link_to "Add some shoess", new_shoe_path %></p>
+<% end %>

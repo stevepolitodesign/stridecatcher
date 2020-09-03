@@ -1,0 +1,4 @@
+var shoeForm = document.querySelector("#new_shoe");
+if(shoeForm) {
+    shoeForm.insertAdjacentHTML('afterbegin', '<%= escape_javascript(render "shared/form_errors", object: @shoe) %>')
+}
