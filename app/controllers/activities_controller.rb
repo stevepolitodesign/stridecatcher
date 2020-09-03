@@ -4,7 +4,7 @@ class ActivitiesController < ApplicationController
     before_action :set_shoe
 
     def index
-        @q = current_user.activities.ransack(params[:q])
+        @q = current_user.activities.ordered.ransack(params[:q])
         @pagy, @activities = pagy(@q.result(distinct: true))
     end
 
