@@ -112,5 +112,33 @@ class ActivitiesTest < ApplicationSystemTestCase
     click_button "Create Activity"
 
     assert_text "Created Activity"
+  end
+  
+  test "should create shoe" do
+    sign_in @user
+
+    visit new_activity_path
+
+    click_button "Add Shoe"
+    within "#new_shoe" do
+      fill_in "Name", with: "Foo Bar Baz"
+      click_button "Create Shoe"
+    end
+
+    within "#activity_shoe_id" do
+      assert_text "Foo Bar Baz (0.0 miles)"
+    end
+  end
+
+  test "should render form errors when creating shoe" do
+    sign_in @user
+
+    visit new_activity_path
+
+    click_button "Add Shoe"
+    within "#new_shoe" do
+      click_button "Create Shoe"
+      assert_selector "#form_errors"
+    end
   end  
 end

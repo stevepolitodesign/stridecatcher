@@ -63,7 +63,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="shoeFormModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="shoeFormModalLabel">Add a shoe</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -71,28 +71,13 @@
       <div class="modal-body">
         <%= form_with model: @shoe, id: dom_id(@shoe), remote: true do |f| %>
             <%= render partial: "shared/form_errors", locals: { object: f.object } %>
-            <div class="form-group">
-                <%= f.label :name %>
-                <%= f.text_field :name, class: "form-control" %>
-            </div>
-            <div class="form-group">
-                <%= f.label :allowed_distance_in_miles, "Notifiy me when my shoe hits this mileage" %>
-                <%= f.number_field :allowed_distance_in_miles, min: 0, step: 1, class: "form-control" %>
-            </div>  
-            <div class="form-group">
-                <%= f.label :retired %>
-                <%= f.check_box :retired, class: "" %>
-            </div>
+            <%= render partial: "shoes/form_fields", locals: { f: f } %>
             <div class="form-group">
                 <div class="btn-group" role="group" aria-label="Form Actions">
                     <%= f.submit class: "btn btn-primary" %>
                 </div>
             </div>
         <% end %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
