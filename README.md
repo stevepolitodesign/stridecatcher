@@ -4,7 +4,7 @@
 bundle install
 rails db:create
 rails db:migrate
-rails db:fixturs:load
+rails db:fixtures:load
 ```
 
 # Running Locally
@@ -19,6 +19,6 @@ foreman start
 
 `rails t`
 
-## System Tets
+## System Tests
 
 `rails test:system`
